@@ -1,4 +1,4 @@
-package com.example.pokedex.View
+package com.example.pokedex.View.PokemonListView
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,7 @@ import com.example.pokedex.viewModel.Pokemon
 
 @Composable
 fun PokemonList() {
-    val ditto = Pokemon(132, "Ditto", 6,"Normal", "Plant", 40.0, 3.0,R.drawable.ditto)
+    val ditto = Pokemon(132, "Ditto","Normal", "Plant", 40.0, 3.0,R.drawable.ditto)
     val pokemons = listOf<Pokemon>( ditto, ditto, ditto, ditto, ditto, ditto, ditto, ditto, ditto )
 
     LazyColumn(
@@ -60,7 +60,7 @@ fun PokemonListCard(pokemon: Pokemon) {
                 contentScale = ContentScale.Crop
             )
 
-            Text(text = "${pokemon.name} \tLvl: ${pokemon.lvl}")
+            Text(text = "${pokemon.name} \t#${pokemon.id}")
         }
     }
 }
