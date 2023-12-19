@@ -28,8 +28,8 @@ fun PokemonPage(pokemon: Pokemon) {
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(top = it.calculateTopPadding()),
+                .fillMaxSize(),
+                //.padding(top = it.calculateTopPadding()),
             verticalArrangement = Arrangement.SpaceEvenly
         ){
             PokemonMainCard(pokemon.image)
