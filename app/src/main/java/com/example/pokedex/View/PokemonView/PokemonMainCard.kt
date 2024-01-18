@@ -1,6 +1,8 @@
 package com.example.pokedex.View.PokemonView
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -22,14 +24,17 @@ fun PokemonMainCard(image: Int) {
             .height(200.dp),
         shape = RoundedCornerShape(25)
     ){
-        Image(
-            painter = painterResource(id = image),
-            contentDescription = "",
-            alignment = Alignment.BottomCenter,
-            modifier = Modifier
-                .width(100.dp)
-                .height(100.dp),
-            contentScale = ContentScale.Inside
-        )
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ){
+            Image(
+                painter = painterResource(id = image),
+                contentDescription = "Pokemon_img",
+                alignment = Alignment.BottomCenter,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Inside
+            )
+        }
     }
 }

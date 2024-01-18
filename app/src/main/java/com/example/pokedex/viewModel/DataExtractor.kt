@@ -18,14 +18,4 @@ class DataExtractor: ViewModel() {
     val height: LiveData<String> = _height
     private var _width = MutableLiveData<String>()
     val width: LiveData<String> = _width
-
-    fun getNumberOfPokemons(): Int {
-        return 0
-    }
-
-    fun createPokemonList(): List<Pokemon>{
-        val list = listOf<Pokemon>()
-        return list
-    }
-
 }

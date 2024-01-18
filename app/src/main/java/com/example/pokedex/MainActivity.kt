@@ -3,6 +3,7 @@ package com.example.pokedex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.example.pokedex.View.PokemonListView.PokemonList
 import com.example.pokedex.View.PokemonView.PokemonPage
 import com.example.pokedex.ui.theme.PokedexTheme
 import com.example.pokedex.viewModel.Pokemon

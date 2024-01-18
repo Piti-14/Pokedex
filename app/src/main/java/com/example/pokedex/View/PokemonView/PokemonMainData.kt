@@ -126,7 +126,6 @@ fun PokemonMainData(pokemon: Pokemon) {
                 Text(text = "SPD")
                 Text(text = "PRE")
                 Text(text = "EVA")
-
             }
 
             Column(
