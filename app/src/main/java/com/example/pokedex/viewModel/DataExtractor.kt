@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class DataExtractor: ViewModel() {
 
-    private var _name = MutableLiveData<String>()
+    /*private var _name = MutableLiveData<String>()
     val name: LiveData<String> = _name
 
     private var _firstType = MutableLiveData<String>()
@@ -17,5 +17,7 @@ class DataExtractor: ViewModel() {
     private var _height = MutableLiveData<String>()
     val height: LiveData<String> = _height
     private var _width = MutableLiveData<String>()
-    val width: LiveData<String> = _width
+    val width: LiveData<String> = _width*/
+
+
 }
