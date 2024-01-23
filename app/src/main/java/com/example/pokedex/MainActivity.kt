@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PokedexTheme {
 
-                val pokemon_detailViewModel: PokemonDetailViewModel by V
+                //val pokemon_detailViewModel: PokemonDetailViewModel by
 
                 val ditto = Pokemon(132, "Ditto","Normal", "Plant", 40.0, 3.0,R.drawable.ditto)
                 PokemonPage(pokemon = ditto)
