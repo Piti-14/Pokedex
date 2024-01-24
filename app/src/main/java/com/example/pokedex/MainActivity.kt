@@ -9,7 +9,10 @@ import com.example.pokedex.View.PokemonView.PokemonPage
 import com.example.pokedex.ui.theme.PokedexTheme
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 import com.example.pokedex.viewModel.Pokemon
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
