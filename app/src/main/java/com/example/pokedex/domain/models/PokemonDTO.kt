@@ -1,6 +1,6 @@
 package com.example.pokedex.domain.models
 
-data class Pokemon(
+data class PokemonDTO(
     val abilities: List<Ability>,
     val base_experience: Int,
     val forms: List<Form>,
