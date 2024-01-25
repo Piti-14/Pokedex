@@ -18,12 +18,13 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonPage(pokemon: PokemonDetailViewModel) {
+fun PokemonPage(detailViewModel: PokemonDetailViewModel) {
     Scaffold (
-        topBar = { PokemonTopBar(pokemon.getPokemonID()) }
+        topBar = { PokemonTopBar(detailViewModel.getPokemonID()) }
     ) {
         Column(
             modifier = Modifier
@@ -31,9 +32,9 @@ fun PokemonPage(pokemon: PokemonDetailViewModel) {
                 //.padding(top = it.calculateTopPadding()),
             verticalArrangement = Arrangement.SpaceEvenly
         ){
-            PokemonMainCard(pokemon)
-            PokemonMainData(pokemon)
-            PokemonStats(pokemon)
+            PokemonMainCard(detailViewModel)
+            PokemonMainData(detailViewModel)
+            PokemonStats(detailViewModel)
         }    
     }
 }

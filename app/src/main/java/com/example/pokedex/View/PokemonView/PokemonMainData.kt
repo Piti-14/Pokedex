@@ -87,7 +87,7 @@ fun PokemonMainData(pokemon: PokemonDetailViewModel) {
             Column (
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ){
-                pokemon.getPokemonTypes()?.get(1)?.type?.let { Text(text = it.name) }
+               // pokemon.getPokemonTypes()?.get(1)?.type?.let { Text(text = it.name) }
                 Text("${pokemon.getPokemonHeight()} m")
                 Text(text = "Height")
             }
