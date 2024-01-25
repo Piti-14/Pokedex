@@ -4,18 +4,31 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.pokedex.domain.models.PokemonDTO
 import com.example.pokedex.domain.models.Sprites
 import com.example.pokedex.domain.models.Stat
 import com.example.pokedex.domain.models.Type
+import com.example.pokedex.domain.repositories.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class PokemonDetailViewModel @Inject constructor(application: Application,
-                        private val pokemon: PokemonDTO): AndroidViewModel(application) {
+class PokemonDetailViewModel
+    @Inject constructor(private val pokemonRepository: PokemonRepository): ViewModel() {
 
-    private var _pokemonName = MutableLiveData<String>()
+    private var _pokemon = MutableLiveData<PokemonDTO>()
+    val pokemon: LiveData<PokemonDTO> = _pokemon
+
+    init {
+        initializePokemon()
+    }
+    private fun initializePokemon(){
+        _pokemon.postValue(pokemonRepository.getPokemon())
+    }
+
+
+    /*private var _pokemonName = MutableLiveData<String>()
     val pokemonName: LiveData<String> = _pokemonName
 
     private var _pokemonHeight = MutableLiveData<Int>()
@@ -80,5 +93,5 @@ class PokemonDetailViewModel @Inject constructor(application: Application,
 
     fun getPokemonSprite(): Sprites? {
         return pokemonSprite.value
-    }
+    }*/
 }

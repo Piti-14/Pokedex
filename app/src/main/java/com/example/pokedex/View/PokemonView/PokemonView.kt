@@ -14,6 +14,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
@@ -22,9 +24,12 @@ import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonPage(detailViewModel: PokemonDetailViewModel) {
+fun PokemonPage(pokemonViewModel: PokemonDetailViewModel) {
+
+    val pokemon by pokemonViewModel.pokemon.observeAsState()
+
     Scaffold (
-        topBar = { PokemonTopBar(detailViewModel.getPokemonID()) }
+        topBar = { PokemonTopBar(pokemon?.id) }
     ) {
         Column(
             modifier = Modifier
@@ -32,9 +37,9 @@ fun PokemonPage(detailViewModel: PokemonDetailViewModel) {
                 //.padding(top = it.calculateTopPadding()),
             verticalArrangement = Arrangement.SpaceEvenly
         ){
-            PokemonMainCard(detailViewModel)
-            PokemonMainData(detailViewModel)
-            PokemonStats(detailViewModel)
+            PokemonMainCard(pokemonViewModel)
+            PokemonMainData(pokemonViewModel)
+            PokemonStats(pokemonViewModel)
         }    
     }
 }

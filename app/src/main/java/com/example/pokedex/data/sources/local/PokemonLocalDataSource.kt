@@ -1,28 +1,34 @@
 package com.example.pokedex.data.sources.local
 
+import android.app.Application
 import android.content.Context
 import com.example.pokedex.domain.models.PokemonDTO
 import com.google.gson.Gson
 import java.io.InputStream
+import javax.inject.Inject
 
-fun getPokemonFromJSON(filename: String, context: Context): PokemonDTO{
-    val pokemonJSON = accessJSONFromAssets(filename, context)
-    val pokemon = JSONtoModel(pokemonJSON)
+class PokemonLocalDataSource @Inject constructor (private val application: Application) {
 
-    return pokemon
-}
-fun accessJSONFromAssets(json: String, context: Context): InputStream {
-    //Accedemos al JSON
-    return context.assets.open(json)
-}
+    fun getPokemonFromJSON(filename: String): PokemonDTO {
+        val pokemonJSON = accessJSONFromAssets(filename)
+        val pokemon = JSONtoModel(pokemonJSON)
 
-fun JSONtoModel(jsonObject: InputStream): PokemonDTO{
-    //GSON convierte el json a Pokemon
-    val gson = Gson()
-    val reader = jsonObject.reader()
+        return pokemon
+    }
 
-    val pokemon: PokemonDTO = gson.fromJson(reader, PokemonDTO::class.java)
+    fun accessJSONFromAssets(json: String): InputStream {
+        //Accedemos al JSON
+        return application.assets.open(json)
+    }
 
-    reader.close()
-    return pokemon
+    fun JSONtoModel(jsonObject: InputStream): PokemonDTO {
+        //GSON convierte el json a Pokemon
+        val gson = Gson()
+        val reader = jsonObject.reader()
+
+        val pokemon: PokemonDTO = gson.fromJson(reader, PokemonDTO::class.java)
+
+        reader.close()
+        return pokemon
+    }
 }
