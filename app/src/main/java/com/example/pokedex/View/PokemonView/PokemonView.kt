@@ -16,14 +16,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import com.example.pokedex.viewModel.Pokemon
+import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonPage(pokemon: Pokemon) {
+fun PokemonPage(pokemon: PokemonDetailViewModel) {
     Scaffold (
-        topBar = { PokemonTopBar(pokemon.id) }
+        topBar = { PokemonTopBar(pokemon.getPokemonID()) }
     ) {
         Column(
             modifier = Modifier
@@ -31,7 +31,7 @@ fun PokemonPage(pokemon: Pokemon) {
                 //.padding(top = it.calculateTopPadding()),
             verticalArrangement = Arrangement.SpaceEvenly
         ){
-            PokemonMainCard(pokemon.image)
+            PokemonMainCard(pokemon)
             PokemonMainData(pokemon)
             PokemonStats(pokemon)
         }    
@@ -40,7 +40,7 @@ fun PokemonPage(pokemon: Pokemon) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonTopBar(id: Int) {
+fun PokemonTopBar(id: Int?) {
     TopAppBar(
         navigationIcon = {
             IconButton(onClick = { /*TODO*/ }) {

@@ -75,6 +75,7 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.google.code.gson:gson:2.10")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
 
     //Dagger Hilt
     val hiltVersion = "2.48.1"

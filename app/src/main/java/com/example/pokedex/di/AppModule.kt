@@ -3,6 +3,7 @@ package com.example.pokedex.di
 import android.app.Application
 import com.example.pokedex.data.sources.local.getPokemonFromJSON
 import com.example.pokedex.domain.models.PokemonDTO
+import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,10 +14,19 @@ import javax.inject.Singleton
 @InstallIn(ActivityComponent::class)
 object AppModule {
 
-   /* @Provides
+    @Provides
     @Singleton
     fun providePokemon(application: Application): PokemonDTO{
-        //val pokemon: PokemonDTO = getPokemonFromJSON("ditto.json")
-    }*/
+        val context = application.applicationContext
+        val pokemon: PokemonDTO = getPokemonFromJSON("ditto.json", context)
+
+        return pokemon
+    }
+
+    @Provides
+    @Singleton
+    fun providePokemonViewModel(application: Application, pokemonDTO: PokemonDTO): PokemonDetailViewModel{
+        return PokemonDetailViewModel(application, pokemonDTO)
+    }
 
 }
