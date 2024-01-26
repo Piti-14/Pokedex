@@ -1,30 +1,31 @@
 package com.example.pokedex.ui.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pokedex.domain.models.PokemonDTO
-import com.example.pokedex.domain.models.Sprites
-import com.example.pokedex.domain.models.Stat
-import com.example.pokedex.domain.models.Type
-import com.example.pokedex.domain.repositories.PokemonRepository
+import androidx.lifecycle.viewModelScope
+import com.example.pokedex.data.sources.remote.DTOs.PokemonDTO
+import com.example.pokedex.domain.usecases.GetPokemonDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonDetailViewModel
-    @Inject constructor(private val pokemonRepository: PokemonRepository): ViewModel() {
+    @Inject constructor(private val useCase: GetPokemonDetailUseCase): ViewModel() {
+    //Cambiar inyeccion por UseCase
 
     private var _pokemon = MutableLiveData<PokemonDTO>()
     val pokemon: LiveData<PokemonDTO> = _pokemon
 
-    init {
-        initializePokemon()
-    }
-    private fun initializePokemon(){
-        _pokemon.postValue(pokemonRepository.getPokemon())
+    private suspend fun initializePokemon(filename: String){
+        viewModelScope.launch {
+            _pokemon.postValue(withContext(Dispatchers.IO){
+                useCase.getPokemonDetail(filename)
+            })
+        }
     }
 
 

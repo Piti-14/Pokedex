@@ -1,8 +1,7 @@
 package com.example.pokedex.data.sources.local
 
 import android.app.Application
-import android.content.Context
-import com.example.pokedex.domain.models.PokemonDTO
+import com.example.pokedex.data.sources.remote.DTOs.PokemonDTO
 import com.google.gson.Gson
 import java.io.InputStream
 import javax.inject.Inject

@@ -39,9 +39,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.example.pokedex.domain.models.PokemonDTO
-import com.example.pokedex.domain.models.Stat
-import com.example.pokedex.domain.models.Type
+import com.example.pokedex.data.sources.remote.DTOs.PokemonDTO
+import com.example.pokedex.data.sources.remote.DTOs.Stat
+import com.example.pokedex.data.sources.remote.DTOs.Type
 import com.example.pokedex.ui.theme.AtkColor
 import com.example.pokedex.ui.theme.DefColor
 import com.example.pokedex.ui.theme.HPColor
