@@ -1,7 +1,7 @@
 package com.example.pokedex.domain.repositories
 
-import com.example.pokedex.data.sources.remote.DTOs.PokemonDTO
+import com.example.pokedex.domain.models.Pokemon
 
 interface PokemonDetailRepository {
-    suspend fun getPokemon(filename: String): PokemonDTO
+    suspend fun getPokemon(filename: String): Pokemon
 }

@@ -1,3 +1,4 @@
+/*
 package com.example.pokedex.View.PokemonListView
 
 import androidx.compose.foundation.Image
@@ -19,13 +20,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.pokedex.R
-import com.example.pokedex.viewModel.Pokemon
 
 
 @Composable
 fun PokemonList() {
-    val ditto = Pokemon(132, "Ditto","Normal", "Plant", 40.0, 3.0,R.drawable.ditto)
-    val pokemons = listOf<Pokemon>( ditto, ditto, ditto, ditto, ditto, ditto, ditto, ditto, ditto )
+    //val ditto = Pokemon(132, "Ditto","Normal", "Plant", 40.0, 3.0,R.drawable.ditto)
+    //val pokemons = listOf<Pokemon>( ditto, ditto, ditto, ditto, ditto, ditto, ditto, ditto, ditto )
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -64,3 +64,4 @@ fun PokemonListCard(pokemon: Pokemon) {
         }
     }
 }
+*/

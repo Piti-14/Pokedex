@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex.data.sources.remote.DTOs.PokemonDTO
+import com.example.pokedex.domain.models.Pokemon
 import com.example.pokedex.domain.usecases.GetPokemonDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,10 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 class PokemonDetailViewModel
     @Inject constructor(private val useCase: GetPokemonDetailUseCase): ViewModel() {
-    //Cambiar inyeccion por UseCase
 
-    private var _pokemon = MutableLiveData<PokemonDTO>()
-    val pokemon: LiveData<PokemonDTO> = _pokemon
+    private var _pokemon = MutableLiveData<Pokemon>()
+    val pokemon: LiveData<Pokemon> = _pokemon
 
     private suspend fun initializePokemon(filename: String){
         viewModelScope.launch {

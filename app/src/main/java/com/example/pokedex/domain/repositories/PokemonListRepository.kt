@@ -1,8 +1,8 @@
 package com.example.pokedex.domain.repositories
 
-import com.example.pokedex.data.sources.remote.DTOs.PokemonList
+import com.example.pokedex.data.sources.remote.DTOs.PokemonDTOList
 
 interface PokemonListRepository {
 
-    suspend fun getPokemonList(): PokemonList
+    suspend fun getPokemonList(): PokemonDTOList
 }
