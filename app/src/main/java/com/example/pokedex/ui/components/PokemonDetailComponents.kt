@@ -3,6 +3,7 @@ package com.example.pokedex.ui.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,10 +25,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.pokedex.R
+import com.example.pokedex.data.sources.remote.DTOs.Stat
+import com.example.pokedex.data.sources.remote.DTOs.Type
 
+private const val MAX_STAT = 255
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonDetailTopBar(id: Int?, navController: NavController){
+fun PokemonDetailTopBar(id: Int, navController: NavController){
 
     TopAppBar(
         navigationIcon = {
@@ -72,13 +76,48 @@ fun PokemonDetailImageCard(){
 }
 
 @Composable
-fun PokemonDetailName(){}
+fun PokemonDetailName(name: String) {
+    Text(text = name.uppercase())
+}
 
 @Composable
-fun PokemonDetailTypes(){}
+fun PokemonDetailTypes(types: List<Type>) {
+
+    Row (
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ){
+        types.forEach { type ->
+            Row {
+                Text(type.type.name)
+            }
+        }
+    }
+
+}
 
 @Composable
-fun PokemonDetailMeasures(){}
+fun PokemonDetailMeasures(height: Float, weight: Float) {
+    Row (
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ){
+        Row { Text("$height m")}
+        Row { Text("$weight Kg")}
+    }
+}
 
 @Composable
-fun PokemonDetailStats(){}
+fun PokemonDetailStats(stats: List<Stat>) {
+
+    Text("Base Stats")
+    Row (
+        horizontalArrangement = Arrangement.spacedBy(40.dp)
+    ){
+        Column{
+            stats.forEach{ stat ->
+                Text("${stat.stat.name.uppercase()}:  ${stat.base_stat} / $MAX_STAT")
+            }
+        }
+    }
+}

@@ -9,6 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.pokedex.ui.components.PokemonDetailImageCard
@@ -24,23 +25,32 @@ import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 @Composable
 fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navController: NavController){
 
+    pokemonDetailViewModel.initializePokemon("ditto.json")
     val pokemon by pokemonDetailViewModel.pokemon.observeAsState()
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = { PokemonDetailTopBar(pokemon?.id) }
-    ) {
-        Column (
+    if (pokemon != null){
+        Scaffold(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceEvenly
-        ){
-            PokemonDetailImageCard()//COIL mirar COIL
+            topBar = { PokemonDetailTopBar(pokemon!!.id, navController) }
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    PokemonDetailImageCard()//COIL mirar COIL
 
-            PokemonDetailName()
-            PokemonDetailTypes()
-            PokemonDetailMeasures()
+                    PokemonDetailName(pokemon!!.name)
+                    PokemonDetailTypes(pokemon!!.types)
+                    PokemonDetailMeasures(pokemon!!.height, pokemon!!.weight)
 
-            PokemonDetailStats()
+                    PokemonDetailStats(pokemon!!.stats)
+                }
+            }
         }
     }
 }

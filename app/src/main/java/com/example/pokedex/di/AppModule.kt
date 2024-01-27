@@ -1,8 +1,15 @@
 package com.example.pokedex.di
 
+import android.app.Application
+import com.example.pokedex.data.repositories.PokemonDetailRepositoryImpl
+import com.example.pokedex.data.repositories.PokemonListRepositoryImpl
+import com.example.pokedex.data.sources.local.PokemonLocalDataSource
 import com.example.pokedex.data.sources.remote.PokemonApiService
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.example.pokedex.data.sources.remote.PokemonRemoteDataSource
+import com.example.pokedex.domain.repositories.PokemonDetailRepository
+import com.example.pokedex.domain.repositories.PokemonListRepository
+import com.example.pokedex.domain.usecases.GetPokemonDetailUseCase
+import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,24 +22,43 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-  /*  @Provides
+    @Provides
     @Singleton
-    fun providePokemon(application: Application): PokemonDTO{
-        val context = application.applicationContext
-        val pokemon: PokemonDTO = getPokemonFromJSON("ditto.json", context)
+    fun providePokemonAPIService(): PokemonApiService {
+        return Retrofit.Builder().baseUrl("https://pokeapi.co/api/v2/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
 
-        return pokemon
+            .create(PokemonApiService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providePokemonViewModel(application: Application, pokemonDTO: PokemonDTO): PokemonDetailViewModel{
-        return PokemonDetailViewModel(application, pokemonDTO)
-    }*/
+    fun provideLocalDataSource(application: Application): PokemonLocalDataSource{
+        return PokemonLocalDataSource(application)
+    }
+
+    @Provides
+    @Singleton
+    fun providePokemonDetailViewModel(useCase: GetPokemonDetailUseCase): PokemonDetailViewModel {
+        return PokemonDetailViewModel(useCase)
+    }
+
+    @Provides
+    @Singleton
+    fun providePokemonDetailRepository(pokemonLocalDataSource: PokemonLocalDataSource): PokemonDetailRepository{
+        return PokemonDetailRepositoryImpl(pokemonLocalDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun providePokemonListRepository(pokemonRemoteDataSource: PokemonRemoteDataSource): PokemonListRepository {
+        return PokemonListRepositoryImpl(pokemonRemoteDataSource)
+    }
+
 
 }
 
-@Module
+/*@Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     @Provides
@@ -54,3 +80,4 @@ object NetworkModule {
         return retrofit.create(PokemonApiService::class.java)
     }
 }
+*/

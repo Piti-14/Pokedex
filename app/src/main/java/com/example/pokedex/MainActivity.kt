@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 val pokemonDetailViewModel: PokemonDetailViewModel = hiltViewModel()
                 val navController = rememberNavController()
 
-                NavHost(navController = navController, startDestination = "PokemonList_Screen"){
+                NavHost(navController = navController, startDestination = "PokemonDetail_Screen"){
                     composable("PokemonList_Screen"){
                         PokemonListScreen(pokemonListViewModel, pokemonDetailViewModel, navController) }
 
