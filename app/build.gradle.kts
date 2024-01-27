@@ -70,6 +70,8 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
     implementation("androidx.compose.material3:material3")
 
     //Retrofit
@@ -84,6 +86,9 @@ dependencies {
     val hiltVersion = "2.48.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    //Coil
+    implementation("io.coil-kt:coil:2.5.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

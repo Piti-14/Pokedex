@@ -1,12 +1,46 @@
 package com.example.pokedex.ui.screens
 
-import androidx.activity.ComponentActivity
-import dagger.hilt.android.AndroidEntryPoint
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import com.example.pokedex.ui.components.PokemonDetailImageCard
+import com.example.pokedex.ui.components.PokemonDetailMeasures
+import com.example.pokedex.ui.components.PokemonDetailName
+import com.example.pokedex.ui.components.PokemonDetailStats
+import com.example.pokedex.ui.components.PokemonDetailTopBar
+import com.example.pokedex.ui.components.PokemonDetailTypes
+import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 
-@AndroidEntryPoint
-class PokemonDetailScreen(): ComponentActivity(){}
+@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Composable
+fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navController: NavController){
 
-//llamada a TopBar -> COMPONENTE
-//llamada a ImageCard -> COMPONENTE
-//llamada a Atributos -> COMPONENTE
-//llamada a Stats -> COMPONENTE
+    val pokemon by pokemonDetailViewModel.pokemon.observeAsState()
+
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = { PokemonDetailTopBar(pokemon?.id) }
+    ) {
+        Column (
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceEvenly
+        ){
+            PokemonDetailImageCard()//COIL mirar COIL
+
+            PokemonDetailName()
+            PokemonDetailTypes()
+            PokemonDetailMeasures()
+
+            PokemonDetailStats()
+        }
+    }
+}

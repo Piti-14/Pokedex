@@ -19,7 +19,7 @@ class PokemonDetailViewModel
     private var _pokemon = MutableLiveData<Pokemon>()
     val pokemon: LiveData<Pokemon> = _pokemon
 
-    private suspend fun initializePokemon(filename: String){
+    fun initializePokemon(filename: String){
         viewModelScope.launch {
             _pokemon.postValue(withContext(Dispatchers.IO){
                 useCase.getPokemonDetail(filename)

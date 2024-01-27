@@ -10,11 +10,11 @@ import javax.inject.Inject
 class PokemonDetailRepositoryImpl @Inject constructor(private val pokemonLocalDataSource: PokemonLocalDataSource): PokemonDetailRepository{
     //El return se iria a un mapper para crear NUESTRO modelo Pokemon del domain
     override suspend fun getPokemon(filename: String): Pokemon {
-        val pokemonDTO = pokemonLocalDataSource.getPokemonFromJSON("ditto.json")
-        return transforPokemon(pokemonDTO)
+        val pokemonDTO: PokemonDTO = pokemonLocalDataSource.getPokemonFromJSON("ditto.json")
+        return transformPokemon(pokemonDTO)
     }
 
-    fun transforPokemon(pokemonDTO: PokemonDTO): Pokemon{
+    fun transformPokemon(pokemonDTO: PokemonDTO): Pokemon{
         return PokemonDataMapper.PokemonFromDTO(pokemonDTO)
     }
 }

@@ -13,12 +13,15 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.pokedex.domain.models.Pokemon
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 
 @Composable
 fun PokemonMainData(pokemonViewModel: PokemonDetailViewModel) {
 
-    val pokemon by pokemonViewModel.pokemon.observeAsState()
+    pokemonViewModel.initializePokemon("ditto.json")//habría que llamarlo en la pantalla de PokemonList
+    val pokemon: Pokemon? by pokemonViewModel.pokemon.observeAsState()
+
     Column(
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally,

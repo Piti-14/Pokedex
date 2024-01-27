@@ -25,6 +25,7 @@ import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokemonPage(pokemonViewModel: PokemonDetailViewModel) {
+//ESTA SERÍA MY POKEMON_DETAIL_SCREEN
 
     val pokemon by pokemonViewModel.pokemon.observeAsState()
 
