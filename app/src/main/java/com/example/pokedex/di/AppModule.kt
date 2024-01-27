@@ -8,8 +8,6 @@ import com.example.pokedex.data.sources.remote.PokemonApiService
 import com.example.pokedex.data.sources.remote.PokemonRemoteDataSource
 import com.example.pokedex.domain.repositories.PokemonDetailRepository
 import com.example.pokedex.domain.repositories.PokemonListRepository
-import com.example.pokedex.domain.usecases.GetPokemonDetailUseCase
-import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,11 +35,11 @@ object AppModule {
         return PokemonLocalDataSource(application)
     }
 
-    @Provides
+    /*@Provides
     @Singleton
     fun providePokemonDetailViewModel(useCase: GetPokemonDetailUseCase): PokemonDetailViewModel {
         return PokemonDetailViewModel(useCase)
-    }
+    }*/
 
     @Provides
     @Singleton
@@ -54,30 +52,4 @@ object AppModule {
     fun providePokemonListRepository(pokemonRemoteDataSource: PokemonRemoteDataSource): PokemonListRepository {
         return PokemonListRepositoryImpl(pokemonRemoteDataSource)
     }
-
-
 }
-
-/*@Module
-@InstallIn(SingletonComponent::class)
-object NetworkModule {
-    @Provides
-    @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder().setLenient().create()
-    }
-    @Provides
-    @Singleton
-    fun provideRetrofit(gson: Gson): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-    }
-    @Provides
-    @Singleton
-    fun providePokemonService(retrofit: Retrofit): PokemonApiService {
-        return retrofit.create(PokemonApiService::class.java)
-    }
-}
-*/

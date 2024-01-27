@@ -38,30 +38,5 @@ fun PokemonList() {
     }
 }
 
-@Composable
-fun PokemonListCard(pokemon: Pokemon) {
-    Card(
-        shape = RoundedCornerShape(18),
-        elevation = CardDefaults.cardElevation(12.dp),
-        modifier = Modifier
-            .height(80.dp)
-            .fillMaxWidth()
-            //.padding(8.dp)
-    ) {
-        Row (
-            Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround
-        ){
-            Image(
-                painter = painterResource(id = pokemon.image),
-                contentDescription = pokemon.name,
-                modifier = Modifier.padding( end = 100.dp),
-                contentScale = ContentScale.Crop
-            )
 
-            Text(text = "${pokemon.name} \t#${pokemon.id}")
-        }
-    }
-}
 */

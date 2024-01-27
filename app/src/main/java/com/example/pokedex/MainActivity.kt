@@ -27,8 +27,10 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 NavHost(navController = navController, startDestination = "PokemonDetail_Screen"){
+
                     composable("PokemonList_Screen"){
-                        PokemonListScreen(pokemonListViewModel, pokemonDetailViewModel, navController) }
+                        PokemonListScreen(pokemonListViewModel, pokemonDetailViewModel, navController)
+                    }
 
                     composable("PokemonDetail_Screen"){
                         PokemonDetailScreen( pokemonDetailViewModel, navController )
@@ -36,8 +38,6 @@ class MainActivity : ComponentActivity() {
 
                     composable("LandingPage_Screen"){ LandingPageScreen(navController) }
                 }
-                //PokemonPage(pokemon_detailViewModel)
-                //PokemonList()
             }
         }
     }

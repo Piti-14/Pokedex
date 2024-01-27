@@ -18,11 +18,12 @@ class PokemonListViewModel @Inject constructor(private val useCase: GetPokemonLi
     private var _pokemonList = MutableLiveData<PokemonList>()
     val pokemonList: LiveData<PokemonList> = _pokemonList
 
-    fun initializePokemonList(){
+    init {
         viewModelScope.launch {
             _pokemonList.postValue(withContext(Dispatchers.IO){
-                useCase.getPokemonList()
-            })
+                    useCase.getPokemonList()
+                }
+            )
         }
     }
 }
