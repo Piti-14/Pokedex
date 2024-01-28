@@ -9,11 +9,11 @@ class PokemonRemoteDataSource @Inject constructor(private val pokemonApi: Pokemo
     //IMPLEMENTAR:  construir de las llamadas de api a pokemonDTO y listPokemonDTO
 
     private val gson = Gson()
-    suspend fun getListPokemonDTO(limit: Int): PokemonListDTO{
+    suspend fun getPokemonDTOList(limit: Int): PokemonListDTO{
         //convertir lo que llega de la api a lista PokemonDTO
 
         val jsonList = pokemonApi.getPokemonList(limit)
-        return gson.fromJson(jsonList, PokemonListDTO::class.java)
+        return gson.fromJson(jsonList.reader(), PokemonListDTO::class.java)
     }
 
     suspend fun getPokemonDTO(pokemonName: String): PokemonDTO{
