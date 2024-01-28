@@ -35,11 +35,11 @@ object AppModule {
         return PokemonLocalDataSource(application)
     }
 
-    /*@Provides
+    @Provides
     @Singleton
-    fun providePokemonDetailViewModel(useCase: GetPokemonDetailUseCase): PokemonDetailViewModel {
-        return PokemonDetailViewModel(useCase)
-    }*/
+    fun providePokemonRemoteDataSource(pokemonApiService: PokemonApiService): PokemonRemoteDataSource {
+        return PokemonRemoteDataSource(pokemonApiService)
+    }
 
     @Provides
     @Singleton

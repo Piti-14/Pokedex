@@ -4,5 +4,5 @@ import com.example.pokedex.domain.models.PokemonList
 
 interface PokemonListRepository {
 
-    suspend fun getPokemonList(): PokemonList
+    suspend fun getPokemonList(limit: Int): PokemonList
 }

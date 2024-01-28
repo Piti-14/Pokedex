@@ -42,7 +42,7 @@ fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navContr
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    PokemonDetailImageCard()//COIL mirar COIL
+                    PokemonDetailImageCard(pokemon!!)//COIL mirar COIL
 
                     PokemonDetailName(pokemon!!.name)
                     PokemonDetailTypes(pokemon!!.types)

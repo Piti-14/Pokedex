@@ -7,11 +7,9 @@ import com.example.pokedex.mappers.PokemonDataMapper
 import javax.inject.Inject
 
 
-class PokemonListRepositoryImpl @Inject constructor(val pokemonRemoteDataSource: PokemonRemoteDataSource):
-    PokemonListRepository {
-    override suspend fun getPokemonList(): PokemonList {
-        val pokemonList = pokemonRemoteDataSource.getListPokemonDTO()
+class PokemonListRepositoryImpl @Inject constructor(private val pokemonRemoteDataSource: PokemonRemoteDataSource): PokemonListRepository {
+    override suspend fun getPokemonList(limit: Int): PokemonList {
+        val pokemonList = pokemonRemoteDataSource.getListPokemonDTO(limit)
         return PokemonDataMapper.PokemonsFromDTOList(pokemonList)
     }
-
 }

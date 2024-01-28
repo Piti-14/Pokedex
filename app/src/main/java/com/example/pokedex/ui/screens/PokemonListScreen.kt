@@ -31,10 +31,9 @@ fun PokemonListScreen(
             .fillMaxSize()
             .padding(start = 10.dp, end = 10.dp)
     ){
-        pokemons?.pokemons?.let { it ->
-            items(it.size){
-                PokemonListItem(pokemons!!.pokemons[it])
-            }
+        items(pokemons?.pokemons!!.size){
+            PokemonListItem(pokemon = pokemons?.pokemons!![it])
         }
+
     }
 }
