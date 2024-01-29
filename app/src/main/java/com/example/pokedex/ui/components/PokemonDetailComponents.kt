@@ -66,25 +66,19 @@ fun PokemonDetailImageCard(pokemon: Pokemon) {
             contentAlignment = Alignment.Center
         ){
             AsyncImage(
-                model = pokemon.sprite.front_default,
+                model = pokemon.sprite.other.home.front_default,
                 contentDescription = "PokeImage",
                 modifier = Modifier.fillMaxSize()
                     .background(Color.Transparent)
                     .size(200.dp)
-                )
-            /*Image(
-                painter = painterResource(id = R.drawable.ditto),
-                contentDescription = "Pokemon_img",
-                alignment = Alignment.BottomCenter,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Inside
-            )*/
+            )
         }
     }
 }
 
 @Composable
 fun PokemonDetailName(name: String) {
+
     Text(text = name.uppercase())
 }
 

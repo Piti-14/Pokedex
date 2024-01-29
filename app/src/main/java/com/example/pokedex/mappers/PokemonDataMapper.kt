@@ -3,6 +3,7 @@ package com.example.pokedex.mappers
 import com.example.pokedex.data.sources.remote.DTOs.PokemonDTO
 import com.example.pokedex.data.sources.remote.DTOs.PokemonListDTO
 import com.example.pokedex.domain.models.Pokemon
+import com.example.pokedex.domain.models.PokemonList
 
 class PokemonDataMapper {
     companion object{
@@ -23,17 +24,15 @@ class PokemonDataMapper {
             return pokemon
         }
 
-        fun PokemonsFromDTOList(list: PokemonListDTO): List<String> {
-            /*val pokemons = list.results.map { PokemonFromDTO(it) }
-            list.results.get(0).
-            return PokemonList(pokemons)*/
+        fun PokemonsFromDTOList(list: PokemonListDTO): PokemonList {
+
             val pokemonNameList = mutableListOf<String>()
 
             for (pokemon in list.results){
                  pokemonNameList.add(pokemon.name)
             }
 
-            return pokemonNameList
+            return PokemonList(pokemonNameList)
         }
     }
 }

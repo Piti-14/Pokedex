@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-private const val MAX_POKEMONS = 2000
+const val MAX_POKEMON = 2000
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(private val useCase: GetPokemonListUseCase): ViewModel() {
 
@@ -22,7 +22,7 @@ class PokemonListViewModel @Inject constructor(private val useCase: GetPokemonLi
     init {
         viewModelScope.launch {
             _pokemonList.postValue(withContext(Dispatchers.IO){
-                    useCase.getPokemonList(MAX_POKEMONS)
+                    useCase.getPokemonList(MAX_POKEMON)
                 }
             )
         }

@@ -43,8 +43,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePokemonDetailRepository(pokemonLocalDataSource: PokemonLocalDataSource): PokemonDetailRepository{
-        return PokemonDetailRepositoryImpl(pokemonLocalDataSource)
+    fun providePokemonDetailRepository(pokemonLocalDataSource: PokemonLocalDataSource,
+                                       pokemonRemoteDataSource: PokemonRemoteDataSource): PokemonDetailRepository{
+        return PokemonDetailRepositoryImpl(pokemonLocalDataSource, pokemonRemoteDataSource)
     }
 
     @Provides

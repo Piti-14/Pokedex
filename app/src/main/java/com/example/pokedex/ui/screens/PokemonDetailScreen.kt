@@ -25,7 +25,7 @@ import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 @Composable
 fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navController: NavController){
 
-    pokemonDetailViewModel.initializePokemon("ditto.json")
+    //pokemonDetailViewModel.initializePokemon("ditto.json")
     val pokemon by pokemonDetailViewModel.pokemon.observeAsState()
 
     if (pokemon != null){
@@ -42,7 +42,7 @@ fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navContr
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    PokemonDetailImageCard(pokemon!!)//COIL mirar COIL
+                    PokemonDetailImageCard(pokemon!!)//COIL mirar COIL !!
 
                     PokemonDetailName(pokemon!!.name)
                     PokemonDetailTypes(pokemon!!.types)

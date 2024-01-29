@@ -1,6 +1,7 @@
 package com.example.pokedex.ui.components
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,35 +15,46 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.pokedex.R
-import com.example.pokedex.domain.models.Pokemon
+import androidx.navigation.NavHostController
+import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 
 @Composable
-fun PokemonListItem(pokemon: Pokemon) {
+fun PokemonListItem(
+    id: Int,
+    name: String,
+    viewModel: PokemonDetailViewModel,
+    navController: NavHostController
+) {
     Card(
         shape = RoundedCornerShape(18),
         elevation = CardDefaults.cardElevation(12.dp),
         modifier = Modifier
             .height(80.dp)
             .fillMaxWidth()
-        //.padding(8.dp)
+            .padding(start = 10.dp, end = 10.dp)
+            .clickable {
+                viewModel.initializePokemon(name)
+                navController.navigate("PokemonDetail_Screen")
+            }
     ) {
         Row (
-            Modifier.fillMaxSize(),
+            Modifier
+                .fillMaxSize()
+                .background(Color.Cyan),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround
+            horizontalArrangement = Arrangement.SpaceBetween
         ){
-            Image(
-                painter = painterResource(id = R.drawable.ditto),
-                contentDescription = pokemon.name,
-                modifier = Modifier.padding( end = 100.dp),
-                contentScale = ContentScale.Crop
-            )
 
-            Text(text = "${pokemon.name} \t#${pokemon.id}")
+            Text(
+                text = "$name".replaceFirstChar { it.uppercase() },
+                modifier = Modifier.padding(start = 12.dp)
+            )
+            Text(
+                text = "#$id",
+                modifier = Modifier.padding(end = 16.dp)
+            )
         }
     }
 }
