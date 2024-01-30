@@ -11,15 +11,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.pokedex.ui.theme.DarkGrey
+import com.example.pokedex.ui.theme.LightGrey
+import com.example.pokedex.ui.theme.PokeFontHollow
+import com.example.pokedex.ui.theme.PokeFontSolid
+import com.example.pokedex.ui.theme.Purple80
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokemonListItem(
     id: Int,
@@ -37,23 +46,35 @@ fun PokemonListItem(
             .clickable {
                 viewModel.initializePokemon(name)
                 navController.navigate("PokemonDetail_Screen")
-            }
+            },
+        colors = CardDefaults.cardColors(Purple80)
     ) {
         Row (
             Modifier
                 .fillMaxSize()
-                .background(Color.Cyan),
+                .background(DarkGrey)
+                .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ){
 
             Text(
                 text = "$name".replaceFirstChar { it.uppercase() },
-                modifier = Modifier.padding(start = 12.dp)
+                modifier = Modifier.padding(start = 10.dp),
+                fontFamily = PokeFontHollow,
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp ,
+                color = Color.Yellow,
+                letterSpacing = 2.sp,
+
             )
+
             Text(
-                text = "#$id",
-                modifier = Modifier.padding(end = 16.dp)
+                text = "# $id",
+                modifier = Modifier.padding(end = 10.dp),
+                fontFamily = PokeFontSolid,
+                fontSize = 18.sp,
+                color = LightGrey
             )
         }
     }

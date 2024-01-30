@@ -12,8 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,14 +32,14 @@ import com.example.pokedex.ui.theme.PrimaryPokedexColor
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 import com.example.pokedex.ui.viewmodels.PokemonListViewModel
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PokemonListScreen(
     listViewModel: PokemonListViewModel,
     detailViewModel: PokemonDetailViewModel,
     navController: NavHostController
 ) {
-    //listViewModel.searchPokemons(2000)
+
     val pokemons by listViewModel.pokemonList.observeAsState()
 
     if (pokemons != null) {
@@ -52,20 +53,23 @@ fun PokemonListScreen(
         ) {
 
             stickyHeader {
-                Box(
-                    modifier = Modifier.fillMaxWidth()
-                        .background(PrimaryPokedexColor)
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .clip(
                             shape = RoundedCornerShape(
-                                bottomStart = 25.dp,
-                                bottomEnd = 25.dp
+                                bottomStart = 45.dp,
+                                bottomEnd = 45.dp
                             )
-                        )
+                        ),
+                    colors = CardDefaults.cardColors(PrimaryPokedexColor)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.pokedex_logo),
                         contentDescription = "Pokedex Logo",
-                        Modifier.fillMaxWidth().padding(12.dp),
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp),
                         alignment = Alignment.Center,
                         contentScale = ContentScale.Crop
                     )
