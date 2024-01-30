@@ -73,6 +73,8 @@ fun PokemonListScreen(
                         alignment = Alignment.Center,
                         contentScale = ContentScale.Crop
                     )
+
+                    //SEARCHBAR
                 }
             }
 

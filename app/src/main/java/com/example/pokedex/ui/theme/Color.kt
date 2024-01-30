@@ -14,6 +14,8 @@ val Pink40 = Color(0xFF7D5260)
 val PrimaryPokedexColor = Color(0xFFC92133)
 val DarkGrey = Color(0xFF2b292c)
 val LightGrey = Color(0xff6d6a6d)
+val DetailBackground = Color(0xFF2B2B2B)
+val PokemonYellow = Color(0xFFFECD31)
 
 // Bar Color
 val HPColor = Color(0xFFF5FF00)
@@ -25,6 +27,7 @@ val SpdColor = Color(0f, 1f, 0.063f, 0.55f)
 
 // Types
 data class TypeColor(val name:String,val color:Color)
+
 val TypesColor = listOf(
     TypeColor("normal", Color(0xFFA8A77A)),
     TypeColor("fire", Color(0xFFEE8130)),

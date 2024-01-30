@@ -1,6 +1,7 @@
 package com.example.pokedex.ui.screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,7 @@ import com.example.pokedex.ui.components.PokemonDetailName
 import com.example.pokedex.ui.components.PokemonDetailStats
 import com.example.pokedex.ui.components.PokemonDetailTopBar
 import com.example.pokedex.ui.components.PokemonDetailTypes
+import com.example.pokedex.ui.theme.DetailBackground
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,7 +27,6 @@ import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 @Composable
 fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navController: NavController){
 
-    //pokemonDetailViewModel.initializePokemon("ditto.json")
     val pokemon by pokemonDetailViewModel.pokemon.observeAsState()
 
     if (pokemon != null){
@@ -34,7 +35,7 @@ fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navContr
             topBar = { PokemonDetailTopBar(pokemon!!.id, navController) }
         ) {
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().background(DetailBackground),
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Column(
@@ -45,7 +46,9 @@ fun PokemonDetailScreen(pokemonDetailViewModel: PokemonDetailViewModel, navContr
                     PokemonDetailImageCard(pokemon!!)//COIL mirar COIL !!
 
                     PokemonDetailName(pokemon!!.name)
+
                     PokemonDetailTypes(pokemon!!.types)
+
                     PokemonDetailMeasures(pokemon!!.height, pokemon!!.weight)
 
                     PokemonDetailStats(pokemon!!.stats)
