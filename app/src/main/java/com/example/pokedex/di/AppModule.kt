@@ -1,13 +1,13 @@
 package com.example.pokedex.di
 
 import android.app.Application
-import com.example.pokedex.data.repositories.PokemonDetailRepositoryImpl
-import com.example.pokedex.data.repositories.PokemonListRepositoryImpl
+import com.example.pokedex.data.repositories.FallbackPokemonRepositoryImpl
+import com.example.pokedex.data.repositories.LocalDataPokemonRepositoryImpl
+import com.example.pokedex.data.repositories.RemoteDataPokemonRepositoryImpl
 import com.example.pokedex.data.sources.local.PokemonLocalDataSource
 import com.example.pokedex.data.sources.remote.PokemonApiService
 import com.example.pokedex.data.sources.remote.PokemonRemoteDataSource
-import com.example.pokedex.domain.repositories.PokemonDetailRepository
-import com.example.pokedex.domain.repositories.PokemonListRepository
+import com.example.pokedex.domain.repositories.IPokemonRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,14 +43,22 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePokemonDetailRepository(pokemonLocalDataSource: PokemonLocalDataSource,
-                                       pokemonRemoteDataSource: PokemonRemoteDataSource): PokemonDetailRepository{
-        return PokemonDetailRepositoryImpl(pokemonLocalDataSource, pokemonRemoteDataSource)
+    fun provideFallbackPokemonRepositoryImpl(
+        localDataPokemonRepositoryImpl: LocalDataPokemonRepositoryImpl,
+        remoteDataPokemonRepositoryImpl: RemoteDataPokemonRepositoryImpl
+    ): IPokemonRepository{
+        return FallbackPokemonRepositoryImpl(localDataPokemonRepositoryImpl, remoteDataPokemonRepositoryImpl)
+    }
+
+   /* @Provides
+    @Singleton
+    fun provideLocalDataPokemonRepository(pokemonLocalDataSource: PokemonLocalDataSource): IPokemonRepository{
+        return LocalDataPokemonRepositoryImpl(pokemonLocalDataSource)
     }
 
     @Provides
     @Singleton
-    fun providePokemonListRepository(pokemonRemoteDataSource: PokemonRemoteDataSource): PokemonListRepository {
-        return PokemonListRepositoryImpl(pokemonRemoteDataSource)
-    }
+    fun provideRemoteDataPokemonRepository(pokemonRemoteDataSource: PokemonRemoteDataSource): IPokemonRepository {
+        return RemoteDataPokemonRepositoryImpl(pokemonRemoteDataSource)
+    }*/
 }

@@ -16,8 +16,8 @@ const val MAX_POKEMON = 2000
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(private val useCase: GetPokemonListUseCase): ViewModel() {
 
-    private var _pokemonList = MutableLiveData<PokemonList>()
-    val pokemonList: LiveData<PokemonList> = _pokemonList
+    private var _pokemonList = MutableLiveData<PokemonList?>()
+    val pokemonList: LiveData<PokemonList?> = _pokemonList
 
     init {
         viewModelScope.launch {
