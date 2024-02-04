@@ -16,7 +16,7 @@ class PokemonLocalDataSource @Inject constructor (private val application: Appli
     }
 
     fun getPokemonFromJSON(filename: String): PokemonDTO {
-        val pokemonJSON = accessJSONFromAssets(filename)
+        val pokemonJSON = accessJSONFromAssets("ditto.json")
 
         return PokemonDTOToModel(pokemonJSON)
     }
