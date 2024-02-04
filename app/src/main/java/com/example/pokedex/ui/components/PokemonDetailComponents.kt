@@ -2,6 +2,7 @@ package com.example.pokedex.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -81,7 +82,7 @@ fun PokemonDetailTopBar(id: Int, navController: NavController) {
                     .padding(end = 8.dp)
             ) {
                 Text(
-                    text = "Pokedex",
+                    text = "Pokédex",
                     fontFamily = PokeFontSolid,
                     color = PokemonYellow,
                     letterSpacing = 6.sp
@@ -115,6 +116,8 @@ fun PokemonDetailImageCard(pokemon: Pokemon) {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
+            var lostConnection by rememberSaveable { mutableStateOf(false) }
+
             AsyncImage(
                 model = pokemon.sprite.other.home.front_default,
                 contentDescription = "PokeImage",
@@ -122,8 +125,20 @@ fun PokemonDetailImageCard(pokemon: Pokemon) {
                     .fillMaxSize()
                     .background(Color.Transparent)
                     .size(200.dp),
-                contentScale = ContentScale.FillHeight
+                contentScale = ContentScale.FillHeight,
+                onError = {
+                    lostConnection = true
+                }
             )
+
+            if (lostConnection){
+                Image(
+                    painter = painterResource(id = R.drawable.no_internitto),
+                    contentDescription = "Without connexion photo",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.clip(CircleShape)
+                )
+            }
         }
     }
 }

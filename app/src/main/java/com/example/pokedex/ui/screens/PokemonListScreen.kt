@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.pokedex.R
 import com.example.pokedex.ui.components.PokemonListItem
+import com.example.pokedex.ui.components.PokemonSearchBar
 import com.example.pokedex.ui.theme.PrimaryPokedexColor
 import com.example.pokedex.ui.viewmodels.PokemonDetailViewModel
 import com.example.pokedex.ui.viewmodels.PokemonListViewModel
@@ -74,7 +75,13 @@ fun PokemonListScreen(
                         contentScale = ContentScale.Crop
                     )
 
-                    //SEARCHBAR
+                    PokemonSearchBar(
+                        Modifier.fillMaxWidth()
+                            .padding(16.dp),
+                        "Search..."
+                    ){
+
+                    }
                 }
             }
 
